@@ -24,7 +24,7 @@ if !(type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
     done
 fi
 #保存先
-dlDir=~/Video/YouTube
+dlDir=~/Videos/YouTube
 command -v brew >/dev/null 2>&1 || { 
     loop = true
     while $loop; do
