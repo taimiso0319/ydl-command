@@ -2,13 +2,13 @@
 # Xcode Command Line Toolsがインストールされてなければインストールを促す。
 if !(type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
     test -d "${xpath}" && test -x "${xpath}") ; then
-    loop = true;
-    while $loop; do
+    while :
+    do
         read -p "Xcode Command Line Toolsが必要です。インストールしますか？ (y/N): " yn
         case "$yn" in
             [yY]*)
-                loop = false;
                 xcode-select --install
+                break;
                 ;;   
                 [nN]*) read -p "終了しますか？ (y)" yend
                 case "$yend" in 
@@ -26,12 +26,11 @@ fi
 #保存先
 dlDir=~/Videos/YouTube
 command -v brew >/dev/null 2>&1 || { 
-    loop = true
-    while $loop; do
+    while :
+    do
         read -p "Homebrewが必要です。インストールしますか？ (y/N): " yn
         case "$yn" in
             [yY]*)
-                loop = false;
                 echo >&2 "Homebrewをインストールします。";
                 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; 
                 echo >&2 "homebrew-coreをshallow cloneしたため、unshallowでfetchしています。"; 
@@ -40,6 +39,7 @@ command -v brew >/dev/null 2>&1 || {
                 echo >&2 "homebrew-caskをshallow cloneしたため、unshallowでfetchしています。"; 
                 echo >&2 "この処理には数分掛かる場合があります。"; 
                 git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" fetch --unshallow;
+                break;
             ;;
             [nN]*) read -p "終了しますか？ (y)" yend
                 case "$yend" in 
@@ -55,14 +55,14 @@ command -v brew >/dev/null 2>&1 || {
     done 
 }
 command -v youtube-dl >/dev/null 2>&1 || { 
-    loop = true;
-    while $loop; do 
+    while :
+    do
         read -p "youtube-dlが必要です。インストールしますか? (y/N): " yn
         case "$yn" in
             [yY]*)
-                loop = false;
                 echo >&2 "youtube-dlをインストールします。";
                 brew install youtube-dl; 
+                break;
             ;;
             [nN]*) read -p "終了しますか？ (y)" yend
                 case "$yend" in 
@@ -78,14 +78,14 @@ command -v youtube-dl >/dev/null 2>&1 || {
     done
 }
 command -v ffmpeg >/dev/null 2>&1 || { 
-    loop = true;
-    while $loop; do 
+    while :
+    do
         read -p "ffmpegが必要です。インストールしますか? (y/N): " yn
         case "$yn" in
             [yY]*)
-                loop = false;
                 echo >&2 "ffmpegをインストールします。"
                 brew install ffmpeg; 
+                break;
             ;;
             [nN]*) read -p "終了しますか？ (y)" yend
                 case "$yend" in 
