@@ -7,7 +7,7 @@ if !(type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
         read -p "Xcode Command Line Toolsが必要です。インストールしますか？ (y/N): " yn
         case "$yn" in
             [yY]*)
-                $loop = false;
+                loop = false;
                 xcode-select --install
                 ;;   
                 [nN]*) read -p "終了しますか？ (y)" yend
@@ -31,7 +31,7 @@ command -v brew >/dev/null 2>&1 || {
         read -p "Homebrewが必要です。インストールしますか？ (y/N): " yn
         case "$yn" in
             [yY]*)
-                $loop = false;
+                loop = false;
                 echo >&2 "Homebrewをインストールします。"; \
                 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; 
                 git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" fetch --unshallow;
@@ -55,8 +55,8 @@ command -v youtube-dl >/dev/null 2>&1 || {
         read -p "youtube-dlが必要です。インストールしますか? (y/N): " yn
         case "$yn" in
             [yY]*)
-                $loop = false;
-                echo >&2 "youtube-dlをインストールします。"
+                loop = false;
+                echo >&2 "youtube-dlをインストールします。";
                 brew install youtube-dl; 
             ;;
             [nN]*) read -p "終了しますか？ (y)" yend
@@ -78,7 +78,7 @@ command -v ffmpeg >/dev/null 2>&1 || {
         read -p "ffmpegが必要です。インストールしますか? (y/N): " yn
         case "$yn" in
             [yY]*)
-                $loop = false;
+                loop = false;
                 echo >&2 "ffmpegをインストールします。"
                 brew install ffmpeg; 
             ;;
