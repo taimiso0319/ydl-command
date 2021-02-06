@@ -33,6 +33,7 @@ command -v brew >/dev/null 2>&1 || {
             [yY]*)
                 echo >&2 "Homebrewをインストールします。";
                 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; 
+                brew update;
                 echo >&2 "homebrew-coreをshallow cloneしたため、unshallowでfetchしています。"; 
                 echo >&2 "この処理には数分掛かる場合があります。"; 
                 git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" fetch --unshallow;
