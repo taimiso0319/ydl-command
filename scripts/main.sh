@@ -31,9 +31,10 @@ command -v brew >/dev/null 2>&1 || {
         read -p "Homebrewが必要です。インストールしますか？ (y/N): " yn
         case "$yn" in
             [yY]*)
-                $loop = false
+                $loop = false;
                 echo >&2 "Homebrewをインストールします。"; \
                 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; 
+                git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" fetch --unshallow;
             ;;
             [nN]*) read -p "終了しますか？ (y)" yend
                 case "$yend" in 
